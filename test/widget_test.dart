@@ -7,7 +7,11 @@
  
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
 //import 'package:sgpl_application/main.dart';
  
 void main() {

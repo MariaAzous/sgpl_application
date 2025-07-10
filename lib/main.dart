@@ -15,16 +15,25 @@ class SgplApp extends StatelessWidget {
     );
   }
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _rmController = TextEditingController();
   final _passwordController = TextEditingController();
+<<<<<<< HEAD
 
   void _tryLogin() {
     if (_formKey.currentState!.validate()) {
@@ -33,11 +42,24 @@ class _LoginScreenState extends State<LoginScreen> {
       print('Usuario entrou com RM: ${_rmController.text}');
     } else {
       //Mostrar Snackbar de erro
+=======
+ 
+  void _tryLogin() {
+    if (_formKey.currentState!.validate()) {
+      // Redireciona para a tela Home
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Aviso()),
+      );
+    } else {
+       //Mostrar Snackbar de erro
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Por favor, preencha todos os campos')),
       );
     }
   }
+<<<<<<< HEAD
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +67,26 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.black,
       body: Center(
         child: Form(
+=======
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+            child: Form(
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
           key: _formKey,
           child: Container(
             width: 320,
             padding: const EdgeInsets.symmetric(vertical: 40),
+<<<<<<< HEAD
             decoration: const BoxDecoration(color: Colors.black),
+=======
+            decoration: const BoxDecoration(
+              color: Colors.black,
+            ),
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
             child: Container(
               width: 240,
               padding: const EdgeInsets.all(24),
@@ -85,6 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
+<<<<<<< HEAD
                   const SizedBox(height: 20),
                   SizedBox(
                     width: 120, // mesma largura do botão "Sim"
@@ -106,13 +144,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       child: const Text('Entrar'),
                     ),
+=======
+                  SizedBox(
+                    width: double.infinity,
+                    height: 28,
+                    
+                  ),
+                  ElevatedButton(
+                    onPressed: _tryLogin,
+                    child: Text('Entrar'),
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                   ),
                 ],
               ),
             ),
           ),
+<<<<<<< HEAD
         ),
       ),
     );
   }
 }
+=======
+        )));
+  }
+}
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6

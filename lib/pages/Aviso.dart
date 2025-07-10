@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/pages/Historico.dart';
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
 class Aviso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,9 +15,14 @@ class Aviso extends StatelessWidget {
   }
 }
 
+
 class SGPLInfoPage extends StatelessWidget {
   const SGPLInfoPage({super.key});
 
+ 
+class SGPLInfoPage extends StatelessWidget {
+  const SGPLInfoPage({super.key});
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +30,7 @@ class SGPLInfoPage extends StatelessWidget {
       body: Center(
         child: Container(
           width: 320,
+
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -51,15 +61,29 @@ class SGPLInfoPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12),
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                   // Texto explicativo
                   const Text(
                     "Classificação das ocorrências por cor",
                     textAlign: TextAlign.center,
+<<<<<<< HEAD
                     style: TextStyle(fontSize: 15, color: Colors.black),
                   ),
                   const SizedBox(height: 16),
 
+=======
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+ 
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                   // Botões de cor
                   Container(
                     width: double.infinity,
@@ -67,6 +91,7 @@ class SGPLInfoPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(254, 102, 102, 1),
                       borderRadius: BorderRadius.circular(6),
+<<<<<<< HEAD
                       boxShadow: [
                         BoxShadow(
                           // ignore: deprecated_member_use
@@ -85,12 +110,25 @@ class SGPLInfoPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 9),
+=======
+                    ),
+                    child: const Center(
+                     
+                      child: Text(
+                        "Emergência: Não podem esperar",
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(253, 255, 128, 1),
                       borderRadius: BorderRadius.circular(6),
+<<<<<<< HEAD
                       boxShadow: [
                         BoxShadow(
                           // ignore: deprecated_member_use
@@ -100,21 +138,32 @@ class SGPLInfoPage extends StatelessWidget {
                           offset: Offset(0, 3), // sombra para baixo
                         ),
                       ],
+=======
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                     ),
                     child: const Center(
                       child: Text(
                         "Urgente: Espera mínima",
+<<<<<<< HEAD
                         style: TextStyle(color: Colors.black, fontSize: 13),
                       ),
                     ),
                   ),
                   const SizedBox(height: 9),
+=======
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(130, 235, 113, 1),
                       borderRadius: BorderRadius.circular(6),
+<<<<<<< HEAD
                       boxShadow: [
                         BoxShadow(
                           // ignore: deprecated_member_use
@@ -124,17 +173,27 @@ class SGPLInfoPage extends StatelessWidget {
                           offset: Offset(0, 3), // sombra para baixo
                         ),
                       ],
+=======
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                     ),
                     child: const Center(
                       child: Text(
                         "Eletiva: Podem esperar",
+<<<<<<< HEAD
                         style: TextStyle(color: Colors.black, fontSize: 13),
+=======
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
                       ),
                     ),
                   ),
                 ],
               ),
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
               // Botão de fechar (X)
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -145,6 +204,7 @@ class SGPLInfoPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+<<<<<<< HEAD
                           builder: (context) => Historico(),
                         ), // Substitua por sua tela
                       );
@@ -153,10 +213,23 @@ class SGPLInfoPage extends StatelessWidget {
                   ),
                 ],
               ),
+=======
+                            builder: (context) =>
+                                Historico()), // Substitua por sua tela
+                      );
+                    },
+                  ),
+                ],
+              )
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
             ],
           ),
         ),
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9746b422ca9b7fc95f7ba4159c5d7b58e6c68ce6
