@@ -29,13 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
   void _tryLogin() {
     if (_formKey.currentState!.validate()) {
       // Redireciona para a tela Home
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Aviso()));
-      print('Usuario entrou com RM: ${_rmController.text}');
-    } else {
-      //Mostrar Snackbar de erro
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Por favor, preencha todos os campos')),
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Aviso())
+      );
+      print('Usuario entrou com RM: ${_rmController.text}'
       );
     }
   }

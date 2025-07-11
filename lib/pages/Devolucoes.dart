@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Historico.dart';
-import 'package:sgpl_application/incidents/Ocorrencia_001.dart';
+import 'package:sgpl_application/returned_reports/Devolvido_001.dart';
+import 'package:sgpl_application/returned_reports/Devolvido_002.dart';
+import 'package:sgpl_application/returned_reports/Devolvido_003.dart';
+import 'package:sgpl_application/returned_reports/Devolvido_004.dart';
+import 'package:sgpl_application/returned_reports/Devolvido_005.dart';
 
 class Devolucoes extends StatelessWidget {
   @override
@@ -16,132 +20,36 @@ class Devolucoes extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
+      //Quarta-Feira
+      body: Padding(
         padding: const EdgeInsets.all(16.0), // padding igual ao seu código
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Quinta-Feira',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-            const SizedBox(height: 8),
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
-                  );
-                  print('12/09/2024 - Teclado quebrado pressionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '12/09/2024 - Teclado quebrado',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
-                  );
-                  print(
-                    '12/09/2024 - Problemas com a fonte de alimentação pressionado',
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '12/09/2024 - Problemas com a fonte de alimentação',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            const Text(
               'Quarta-Feira',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 13),
+
             SizedBox(
-              width: double.infinity,
-              height: 55,
+              width: 2000, // Largura fixa
+              height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
+                    MaterialPageRoute(builder: (context) => Devolvido_005()),
                   );
-                  print('11/09/2024 - Mouse não funciona pressionado');
+                  print('Botão 1 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 3,
                   foregroundColor: Colors.black,
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '11/09/2024 - Mouse não funciona',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            SizedBox(
-              width: double.infinity,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
-                  );
-                  print('11/09/2024 - Problemas com autenticação pressionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10),
+                    side: const BorderSide(color: Colors.grey),
                   ),
                 ),
                 child: Align(
@@ -153,25 +61,26 @@ class Devolucoes extends StatelessWidget {
                 ),
               ),
             ),
+
             const SizedBox(height: 12),
             SizedBox(
-              width: double.infinity,
-              height: 55,
+              width: 2000,
+              height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
+                    MaterialPageRoute(builder: (context) => Devolvido_004()),
                   );
-                  print('11/09/2024 - Erro no VS Code pressionado');
+                  print('Botão 2 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 3,
                   foregroundColor: Colors.black,
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10),
+                    side: const BorderSide(color: Colors.grey),
                   ),
                 ),
                 child: Align(
@@ -185,31 +94,31 @@ class Devolucoes extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
+            //Terça-Feira
             const Text(
               'Terça-Feira',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 13),
+
             SizedBox(
-              width: double.infinity,
-              height: 55,
+              width: 2000,
+              height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
+                    MaterialPageRoute(builder: (context) => Devolvido_003()),
                   );
-                  print(
-                    '10/09/2024 - Falha no compartilhamento de tela pressionado',
-                  );
+                  print('Botão 3 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 3,
                   foregroundColor: Colors.black,
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10),
+                    side: const BorderSide(color: Colors.grey),
                   ),
                 ),
                 child: Align(
@@ -223,29 +132,31 @@ class Devolucoes extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
+            //Segunda-Feira
             const Text(
               'Segunda-Feira',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 13),
+
             SizedBox(
-              width: double.infinity,
-              height: 55,
+              width: 2000,
+              height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
+                    MaterialPageRoute(builder: (context) => Devolvido_002()),
                   );
-                  print('09/09/2024 - Falha na conexão à internet pressionado');
+                  print('Botão 4 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 3,
                   foregroundColor: Colors.black,
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10),
+                    side: const BorderSide(color: Colors.grey),
                   ),
                 ),
                 child: Align(
@@ -258,24 +169,26 @@ class Devolucoes extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
+
+            const SizedBox(height: 8),
             SizedBox(
-              width: double.infinity,
-              height: 55,
+              width: 2000,
+              height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Ocorrencia_001()),
+                    MaterialPageRoute(builder: (context) => Devolvido_001()),
                   );
-                  print('09/09/2024 - Teclado quebrado pressionado');
+                  print('Botão 5 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 3,
                   foregroundColor: Colors.black,
                   backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10),
+                    side: const BorderSide(color: Colors.grey),
                   ),
                 ),
                 child: Align(

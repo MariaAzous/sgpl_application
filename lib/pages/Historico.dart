@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:sgpl_application/incidents/Ocorrencia_002.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Devolucoes.dart';
 import 'package:sgpl_application/incidents/Ocorrencia_001.dart';
- 
+
 class Historico extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white, // Cor do fundo da página
       appBar: AppBar(
-      automaticallyImplyLeading: false, // Remove a seta de voltar
-      title: Text('HISTÓRICO',
-      style: TextStyle(
-      fontWeight: FontWeight.bold, // NEGRITO!
-      fontSize: 29.0,  // Tamanho da fonte
-), 
+        automaticallyImplyLeading: false, // Remove a seta de voltar
+        title: Text(
+          'HISTÓRICO',
+          style: TextStyle(
+            fontWeight: FontWeight.bold, // NEGRITO!
+            fontSize: 29.0, // Tamanho da fonte
+          ),
+        ),
+        backgroundColor: Colors.white, // Cor do fundo do AppBar
       ),
-       backgroundColor: Colors.white, // Cor do fundo do AppBar
-       ),
- 
+
       // Corpo da tela com botão
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,7 +28,7 @@ class Historico extends StatelessWidget {
           crossAxisAlignment:
               CrossAxisAlignment.start, // Alinha os botões à esquerda
           children: [
-            SizedBox(height: 1),// Espaço entre o AppBar e o primeiro botão
+            SizedBox(height: 1), // Espaço entre o AppBar e o primeiro botão
             SizedBox(
               width: 2000, // Largura fixa
               height: 60, // Altura fixa
@@ -35,8 +37,8 @@ class Historico extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            Ocorrencia_001()), // Substitua por sua tela
+                      builder: (context) => Ocorrencia_001(),
+                    ), // Substitua por sua tela
                   );
                   print('Botão 1 pressionado');
                 },
@@ -70,6 +72,10 @@ class Historico extends StatelessWidget {
               height: 60, // Altura fixa
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Ocorrencia_002()),
+                  );
                   print('Botão 2 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
@@ -195,76 +201,74 @@ class Historico extends StatelessWidget {
           ],
         ),
       ),
-          // Menu inferior fixo com dois IconButton
+      // Menu inferior fixo com dois IconButton
       bottomNavigationBar: Container(
-  decoration: BoxDecoration(
-    border: Border(
-      top: BorderSide(
-        color: Colors.black, // Cor da borda
-        width: 1.0, // Espessura da borda
-      ),
-    ),
-  ),
-       child: BottomAppBar(
-        color: Colors.white, // Cor de fundo do BottomAppBar
-        shape: CircularNotchedRectangle(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              //Botão Devoluções
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Devolucoes()),
-                  );
-                  print('Devoluções clicado');
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor:
-                      Colors.black, // Define a cor do texto e do ícone
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Colors.black, // Cor da borda
+              width: 1.0, // Espessura da borda
+            ),
+          ),
+        ),
+        child: BottomAppBar(
+          color: Colors.white, // Cor de fundo do BottomAppBar
+          shape: CircularNotchedRectangle(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //Botão Devoluções
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Devolucoes()),
+                    );
+                    print('Devoluções clicado');
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor:
+                        Colors.black, // Define a cor do texto e do ícone
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.desktop_windows_outlined),
+                      SizedBox(width: 8),
+                      Text('Devoluções'),
+                    ],
+                  ),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.desktop_windows_outlined),
-                    SizedBox(width: 8),
-                    Text('Devoluções'),
-                  ],
+                // Botão de Saída
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => SgplApp()),
+                      (route) => false,
+                    );
+                    print('Sair clicado');
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor:
+                        Colors.black, // Define a cor do texto e do ícone
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.logout),
+                      SizedBox(width: 8),
+                      Text('Sair'),
+                    ],
+                  ),
                 ),
-              ),
-              // Botão de Saída
-              TextButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => SgplApp()),
-                    (route) => false,
-                  );
-                  print('Sair clicado');
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor:
-                      Colors.black, // Define a cor do texto e do ícone
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.logout),
-                    SizedBox(width: 8),
-                    Text('Sair'),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
     );
   }
 }
- 
- 

@@ -1,23 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
+import 'package:sgpl_application/pages/Devolucoes.dart';
 import 'package:sgpl_application/pages/Historico.dart';
 
-class Ocorrencia_001 extends StatefulWidget {
-  @override
-  _Ocorrencia_001State createState() => _Ocorrencia_001State();
-}
-
-class _Ocorrencia_001State extends State<Ocorrencia_001> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _resolucaoController = TextEditingController();
-
-  @override
-  void dispose() {
-    _resolucaoController.dispose(); // evita vazamento de memória
-    super.dispose();
-  }
-
+class Devolvido_002 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +31,11 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
               crossAxisAlignment: CrossAxisAlignment.start, // aqui também
               children: [
                 Text(
-                  'Teclado quebrado  #001',
+                  'Falha na conexão à internet  #002',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'RM974568',
+                  'RM9231456',
                   style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
                 ),
               ],
@@ -60,14 +46,14 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
               decoration: BoxDecoration(
                 color: Colors.grey.shade50, // fundo claro como estava no Card
                 border: Border.all(
-                  color: Colors.green.shade200,
+                  color: Colors.grey.shade400,
                   width: 1,
                 ), // borda
                 borderRadius: BorderRadius.circular(8), // cantos arredondados
                 boxShadow: [
                   BoxShadow(
                     // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 4,
                     offset: Offset(0, 3), // sombra para baixo
@@ -80,7 +66,7 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'RM Professor: 987604',
+                    'RM Professor: 987364',
                     style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
                   ),
                   SizedBox(height: 10),
@@ -88,17 +74,17 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                     children: [
                       Text('Data: 09/09/2024'),
                       SizedBox(width: 18),
-                      Text('Período: Noturno'),
+                      Text('Período: Vespetino'),
                     ],
                   ),
                   SizedBox(height: 10),
                   Row(
                     children: [
-                      Text('Laboratório: 1'),
+                      Text('Laboratório: 3'),
                       SizedBox(width: 18),
-                      Text('Andar: 2'),
+                      Text('Andar: 4'),
                       SizedBox(width: 18),
-                      Text('Máquina: 009675'),
+                      Text('Máquina: 452178'),
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -109,7 +95,7 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                   ),
                   SizedBox(height: 6),
                   const Text(
-                    'Teclado ao início da aula foi encontrado com as teclas desmontadas e o cabo de conexão rompido.',
+                    'Aluno não consegue conectar á internet da escola.',
                     style: TextStyle(fontSize: 14),
                     softWrap: true,
                     overflow: TextOverflow.visible,
@@ -119,66 +105,42 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
               ),
             ),
 
-            SizedBox(height: 16), // Espaço entre os cards
-
+            SizedBox(height: 12), // espaçamento entre o texto e o card
             Container(
+             width: double.infinity, // Faz o container ocupar toda a largura disponível
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
+                color: Colors.grey.shade50, // fundo claro como estava no Card
+                border: Border.all(
+                  color: Colors.grey.shade400,
+                  width: 1,
+                ), // borda
+                borderRadius: BorderRadius.circular(8), // cantos arredondados
                 boxShadow: [
                   BoxShadow(
                     // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
-                    spreadRadius: 2,
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
                     blurRadius: 4,
                     offset: Offset(0, 3), // sombra para baixo
                   ),
                 ],
               ),
-              
-              child: TextFormField(
-                controller: _resolucaoController,
-                maxLines: 4,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Por favor, preencha a descrição da resolução.';
-                  }
-                  return null;
-                },
-                style: const TextStyle(fontSize: 16),
-                decoration: InputDecoration(
-                  hintText: 'Descrição da resolução:',
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade500,
+              padding: const EdgeInsets.all(16.0), // mesmo padding do Card
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Descrição da Resolução:',
+                    style: TextStyle(fontSize: 16, color: Colors.grey.shade500),
                   ),
-
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 16,
+                  SizedBox(height: 6),
+                  const Text(
+                    'Cabo de rede estava mal conectado.',
+                    style: TextStyle(fontSize: 14),
+                    softWrap: true,
+                    overflow: TextOverflow.visible,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
-                    ),
-                  ),
-                ),
+                ],
               ),
             ),
 
@@ -190,28 +152,12 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                 height: 35,
                 child: OutlinedButton(
                   onPressed: () {
-                    // Remove qualquer snackbar anterior antes de exibir um novo
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    // Verifica se o campo está vazio manualmente
-                    if (_resolucaoController.text.trim().isEmpty) {
-                      // Exibe a mesma mensagem do main.dart
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Por favor, preencha a descrição da resolução.',
-                          ),
-                          backgroundColor: Colors.grey.shade500,
-                        ),
-                      );
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Certificacao()),
-                      );
-                      print('Botão de enviar pressionado');
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Devolucoes()),
+                    );
+                    print('Botão de voltar pressionado');
                   },
-
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: Colors.grey.shade400),
 
@@ -227,7 +173,7 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                     ),
                     padding: EdgeInsets.zero,
                   ),
-                  child: const Text('Enviar'),
+                  child: const Text('Voltar'),
                 ),
               ),
             ),
@@ -255,9 +201,6 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                 //Botão HIstórico
                 TextButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(
-                      context,
-                    ).clearSnackBars(); // <- limpa o SnackBar
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Historico()),
@@ -280,9 +223,6 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                 // Botão de Saída
                 TextButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(
-                      context,
-                    ).clearSnackBars(); // <- limpa o SnackBar
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => SgplApp()),
