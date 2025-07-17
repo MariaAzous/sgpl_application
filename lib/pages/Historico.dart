@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/incidents/Ocorrencia_002.dart';
+import 'package:sgpl_application/incidents/Ocorrencia_003.dart';
+import 'package:sgpl_application/incidents/Ocorrencia_004.dart';
+import 'package:sgpl_application/incidents/Ocorrencia_005.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Devolucoes.dart';
 import 'package:sgpl_application/incidents/Ocorrencia_001.dart';
@@ -22,7 +25,7 @@ class Historico extends StatelessWidget {
       ),
 
       // Corpo da tela com botão
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment:
@@ -108,6 +111,10 @@ class Historico extends StatelessWidget {
               height: 60, // Altura fixa
               child: ElevatedButton(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Ocorrencia_003()),
+                  );
                   print('Botão 3 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
@@ -140,6 +147,10 @@ class Historico extends StatelessWidget {
               height: 60, // Altura fixa
               child: ElevatedButton(
                 onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Ocorrencia_004()),
+                  );
                   print('Botão 4 pressionado');
                 },
                 style: ElevatedButton.styleFrom(
@@ -172,6 +183,12 @@ class Historico extends StatelessWidget {
               height: 60, // Altura fixa
               child: ElevatedButton(
                 onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Ocorrencia_005(),
+                    ), 
+                  );
                   print('Botão 5 pressionado');
                 },
                 style: ElevatedButton.styleFrom(

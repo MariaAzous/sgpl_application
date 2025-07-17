@@ -20,7 +20,7 @@ class Devolvido_001 extends StatelessWidget {
         backgroundColor: Colors.white, // Cor do fundo do AppBar
       ),
       // Corpo da tela com os detalhes da ocorrência
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment:
@@ -98,7 +98,7 @@ class Devolvido_001 extends StatelessWidget {
                     'Teclado ao início da aula foi encontrado com as teclas desmontadas e o cabo de conexão rompido.',
                     style: TextStyle(fontSize: 14),
                     softWrap: true,
-                    overflow: TextOverflow.visible,
+                    overflow: TextOverflow.visible, // Permite quebra de linha
                   ),
                   SizedBox(height: 20),
                 ],
@@ -137,7 +137,7 @@ class Devolvido_001 extends StatelessWidget {
                     'Problema resolvido com sucesso!!! O teclado quebrado foi descartado e um novo foi colocado em seu lugar.',
                     style: TextStyle(fontSize: 14),
                     softWrap: true,
-                    overflow: TextOverflow.visible,
+                    overflow: TextOverflow.visible, // Permite quebra de linha
                   ),
                 ],
               ),

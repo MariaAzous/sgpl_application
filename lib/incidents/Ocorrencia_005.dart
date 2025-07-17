@@ -3,12 +3,12 @@ import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Historico.dart';
 
-class Ocorrencia_001 extends StatefulWidget {
+class Ocorrencia_005 extends StatefulWidget {
   @override
-  _Ocorrencia_001State createState() => _Ocorrencia_001State();
+  _Ocorrencia_005State createState() => _Ocorrencia_005State();
 }
 
-class _Ocorrencia_001State extends State<Ocorrencia_001> {
+class _Ocorrencia_005State extends State<Ocorrencia_005> {
   final TextEditingController _resolucaoController = TextEditingController();
 
   @override
@@ -44,11 +44,11 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
               crossAxisAlignment: CrossAxisAlignment.start, // aqui também
               children: [
                 Text(
-                  'Teclado quebrado  #001',
+                  'Problemas com autenticação  #005',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'RM974568',
+                  'RM931456',
                   style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
                 ),
               ],
@@ -59,14 +59,14 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
               decoration: BoxDecoration(
                 color: Colors.grey.shade50, // fundo claro como estava no Card
                 border: Border.all(
-                  color: Colors.green.shade200,
+                  color: Colors.red.shade200,
                   width: 1,
                 ), // borda
                 borderRadius: BorderRadius.circular(8), // cantos arredondados
                 boxShadow: [
                   BoxShadow(
                     // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
+                    color: Colors.red.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 4,
                     offset: Offset(0, 3), // sombra para baixo
@@ -85,19 +85,19 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                   SizedBox(height: 10),
                   Row(
                     children: [
-                      Text('Data: 09/09/2024'),
+                      Text('Data: 11/09/2024'),
                       SizedBox(width: 18),
-                      Text('Período: Noturno'),
+                      Text('Período: Vespertino'),
                     ],
                   ),
                   SizedBox(height: 10),
                   Row(
                     children: [
-                      Text('Laboratório: 1'),
+                      Text('Laboratório: 4'),
                       SizedBox(width: 18),
-                      Text('Andar: 2'),
+                      Text('Andar: 3'),
                       SizedBox(width: 18),
-                      Text('Máquina: 009675'),
+                      Text('Máquina: 041743'),
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -108,10 +108,10 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                   ),
                   SizedBox(height: 6),
                   const Text(
-                    'Teclado ao início da aula foi encontrado com as teclas desmontadas e o cabo de conexão rompido.',
+                    'Aluno não conseguiu realizar o login na sua conta da escola.',
                     style: TextStyle(fontSize: 14),
                     softWrap: true,
-                    overflow: TextOverflow.visible, // Permite quebra de linha
+                    overflow: TextOverflow.visible, // permite quebra de linha
                   ),
                   SizedBox(height: 20),
                 ],
@@ -123,12 +123,12 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade50,
-                border: Border.all(color: Colors.green.shade200, width: 1),
+                border: Border.all(color: Colors.red.shade200, width: 1),
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
                     // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
+                    color: Colors.red.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 4,
                     offset: Offset(0, 3), // sombra para baixo
@@ -160,21 +160,21 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(
-                      color: Colors.green.shade200,
+                      color: Colors.red.shade200,
                       width: 1,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(
-                      color: Colors.green.shade200,
+                      color: Colors.red.shade200,
                       width: 1,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(
-                      color: Colors.green.shade200,
+                      color: Colors.red.shade200,
                       width: 1,
                     ),
                   ),

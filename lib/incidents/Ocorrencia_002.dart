@@ -3,229 +3,212 @@ import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Historico.dart';
 
-class Ocorrencia_002 extends StatelessWidget {
+class Ocorrencia_002 extends StatefulWidget {
+  @override
+  _Ocorrencia_002State createState() => _Ocorrencia_002State();
+}
+
+class _Ocorrencia_002State extends State<Ocorrencia_002> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _resolucaoController = TextEditingController();
+
+  @override
+  void dispose() {
+    _resolucaoController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Cor do fundo da página
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Remove a seta de voltar
+        automaticallyImplyLeading: false,
         title: Text(
           'OCORRÊNCIA',
-          style: TextStyle(
-            fontWeight: FontWeight.bold, // NEGRITO!
-            fontSize: 29.0, // Tamanho da fonte
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29.0),
+        ),
+        backgroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Falha na conexão à internet  #002',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'RM9231456',
+                style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
+              ),
+              SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade50,
+                  border: Border.all(color: Colors.green.shade200, width: 1),
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 4,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'RM Professor: 987364',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Text('Data: 09/09/2024'),
+                        SizedBox(width: 18),
+                        Text('Período: Vespertino'),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Text('Laboratório: 3'),
+                        SizedBox(width: 18),
+                        Text('Andar: 4'),
+                        SizedBox(width: 18),
+                        Text('Máquina: 452178'),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      'Descrição do problema:',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                    SizedBox(height: 6),
+                    Text(
+                      'Aluno não consegue conectar á internet da escola.',
+                      style: TextStyle(fontSize: 14),
+                      softWrap: true,
+                      overflow: TextOverflow.visible, // Permite quebra de linha
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 16),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade50,
+                  border: Border.all(color: Colors.green.shade200, width: 1),
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 4,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(8),
+                child: TextFormField(
+                  controller: _resolucaoController,
+                  maxLines: 4,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Por favor, preencha a descrição da resolução.';
+                    }
+                    return null;
+                  },
+                  style: const TextStyle(fontSize: 16),
+                  decoration: InputDecoration(
+                    hintText: 'Descrição da resolução:',
+                    hintStyle: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey.shade500,
+                    ),
+                    border: InputBorder.none, // Remove a borda padrão
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 16,
+                    ),
+                  ),
+                ),
+              ),
+
+              //Botão centralizado
+              SizedBox(height: 40),
+              Center(
+                child: SizedBox(
+                  width: 160,
+                  height: 35,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Certificacao(),
+                          ),
+                        );
+                        print('Botão de enviar pressionado');
+                      }
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: Colors.grey.shade400),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.grey.shade500,
+                      textStyle: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    child: const Text('Enviar'),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        backgroundColor: Colors.white, // Cor do fundo do AppBar
       ),
-      // Corpo da tela com os detalhes da ocorrência
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start, // Alinha o texto à esquerda
-          children: [
-            SizedBox(height: 1), // Espaço entre o AppBar e o primeiro botão
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // aqui também
-              children: [
-                Text(
-                  'Falha na conexão à internet  #002',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'RM9231456',
-                  style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 15), // espaçamento entre o texto e o card
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.grey.shade50, // fundo claro como estava no Card
-                border: Border.all(
-                  color: Colors.green.shade200,
-                  width: 1,
-                ), // borda
-                borderRadius: BorderRadius.circular(8), // cantos arredondados
-                boxShadow: [
-                  BoxShadow(
-                    // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: Offset(0, 3), // sombra para baixo
-                  ),
-                ],
-              ),
-
-              padding: const EdgeInsets.all(16.0), // mesmo padding do Card
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'RM Professor: 987364',
-                    style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Text('Data: 09/09/2024'),
-                      SizedBox(width: 18),
-                      Text('Período: Vespetino'),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Text('Laboratório: 3'),
-                      SizedBox(width: 18),
-                      Text('Andar: 4'),
-                      SizedBox(width: 18),
-                      Text('Máquina: 452178'),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-
-                  Text(
-                    'Descrição do problema:',
-                    style: TextStyle(fontSize: 16, color: Colors.grey.shade500),
-                  ),
-                  SizedBox(height: 6),
-                  const Text(
-                    'Aluno não consegue conectar á internet da escola.',
-                    style: TextStyle(fontSize: 14),
-                    softWrap: true,
-                    overflow: TextOverflow.visible,
-                  ),
-                  SizedBox(height: 20),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 16), // Espaço entre os cards
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 4,
-                    offset: Offset(0, 3), // sombra para baixo
-                  ),
-                ],
-              ),
-              child: TextField(
-                maxLines: 4,
-                style: const TextStyle(fontSize: 16),
-                decoration: InputDecoration(
-                  hintText: 'Descrição da resolução:',
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade500,
-                  ),
-
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 16,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            // Aqui o botão centralizado
-            SizedBox(height: 40),
-            Center(
-              child: SizedBox(
-                width: 160,
-                height: 35,
-                child: OutlinedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Certificacao()),
-                    );
-                    print('Botão de enviado pressionado');
-                  },
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.grey.shade400),
-
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.grey.shade500,
-
-                    textStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    padding: EdgeInsets.zero,
-                  ),
-                  child: const Text('Enviar'),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      // Menu inferior fixo com dois IconButton
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.black, // Cor da borda
-              width: 1.0, // Espessura da borda
-            ),
-          ),
+          border: Border(top: BorderSide(color: Colors.black, width: 1.0)),
         ),
         child: BottomAppBar(
-          color: Colors.white, // Cor de fundo do BottomAppBar
+          color: Colors.white,
           shape: CircularNotchedRectangle(),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                //Botão HIstórico
                 TextButton(
                   onPressed: () {
+                    ScaffoldMessenger.of(context).clearSnackBars();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Historico()),
                     );
                     print('Histórico clicado');
                   },
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        Colors.black, // Define a cor do texto e do ícone
-                  ),
+                  style: TextButton.styleFrom(foregroundColor: Colors.black),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -235,9 +218,9 @@ class Ocorrencia_002 extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Botão de Saída
                 TextButton(
                   onPressed: () {
+                    ScaffoldMessenger.of(context).clearSnackBars();
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => SgplApp()),
@@ -245,10 +228,7 @@ class Ocorrencia_002 extends StatelessWidget {
                     );
                     print('Sair clicado');
                   },
-                  style: TextButton.styleFrom(
-                    foregroundColor:
-                        Colors.black, // Define a cor do texto e do ícone
-                  ),
+                  style: TextButton.styleFrom(foregroundColor: Colors.black),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

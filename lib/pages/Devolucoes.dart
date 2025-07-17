@@ -21,7 +21,7 @@ class Devolucoes extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       //Quarta-Feira
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0), // padding igual ao seu código
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

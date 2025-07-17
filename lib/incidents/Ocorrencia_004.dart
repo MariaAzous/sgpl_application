@@ -3,12 +3,12 @@ import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Historico.dart';
 
-class Ocorrencia_001 extends StatefulWidget {
+class Ocorrencia_004 extends StatefulWidget {
   @override
-  _Ocorrencia_001State createState() => _Ocorrencia_001State();
+  _Ocorrencia_004State createState() => _Ocorrencia_004State();
 }
 
-class _Ocorrencia_001State extends State<Ocorrencia_001> {
+class _Ocorrencia_004State extends State<Ocorrencia_004> {
   final TextEditingController _resolucaoController = TextEditingController();
 
   @override
@@ -44,11 +44,11 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
               crossAxisAlignment: CrossAxisAlignment.start, // aqui também
               children: [
                 Text(
-                  'Teclado quebrado  #001',
+                  'Erro no VS Code  #004',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'RM974568',
+                  'RM996045',
                   style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
                 ),
               ],
@@ -59,14 +59,19 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
               decoration: BoxDecoration(
                 color: Colors.grey.shade50, // fundo claro como estava no Card
                 border: Border.all(
-                  color: Colors.green.shade200,
+                  color: const Color.fromRGBO(253, 255, 128, 1),
                   width: 1,
                 ), // borda
                 borderRadius: BorderRadius.circular(8), // cantos arredondados
                 boxShadow: [
                   BoxShadow(
                     // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
+                    color: const Color.fromRGBO(
+                      253,
+                      255,
+                      128,
+                      1,
+                    ).withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 4,
                     offset: Offset(0, 3), // sombra para baixo
@@ -79,25 +84,25 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'RM Professor: 987604',
+                    'RM Professor: 904536',
                     style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
                   ),
                   SizedBox(height: 10),
                   Row(
                     children: [
-                      Text('Data: 09/09/2024'),
+                      Text('Data: 11/09/2024'),
                       SizedBox(width: 18),
-                      Text('Período: Noturno'),
+                      Text('Período: Matutino'),
                     ],
                   ),
                   SizedBox(height: 10),
                   Row(
                     children: [
-                      Text('Laboratório: 1'),
+                      Text('Laboratório: 2'),
                       SizedBox(width: 18),
-                      Text('Andar: 2'),
+                      Text('Andar: 4'),
                       SizedBox(width: 18),
-                      Text('Máquina: 009675'),
+                      Text('Máquina: 42196'),
                     ],
                   ),
                   const SizedBox(height: 15),
@@ -108,10 +113,10 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                   ),
                   SizedBox(height: 6),
                   const Text(
-                    'Teclado ao início da aula foi encontrado com as teclas desmontadas e o cabo de conexão rompido.',
+                    'O aluno não conseguiu abrir o VS code.',
                     style: TextStyle(fontSize: 14),
                     softWrap: true,
-                    overflow: TextOverflow.visible, // Permite quebra de linha
+                    overflow: TextOverflow.visible, // permite quebra de linha
                   ),
                   SizedBox(height: 20),
                 ],
@@ -123,12 +128,20 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade50,
-                border: Border.all(color: Colors.green.shade200, width: 1),
+                border: Border.all(
+                  color: const Color.fromRGBO(253, 255, 128, 1),
+                  width: 1,
+                ),
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
                     // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
+                    color: const Color.fromRGBO(
+                      253,
+                      255,
+                      128,
+                      1,
+                    ).withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 4,
                     offset: Offset(0, 3), // sombra para baixo
@@ -160,21 +173,21 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(
-                      color: Colors.green.shade200,
+                      color: const Color.fromRGBO(253, 255, 128, 1),
                       width: 1,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(
-                      color: Colors.green.shade200,
+                      color: const Color.fromRGBO(253, 255, 128, 1),
                       width: 1,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(
-                      color: Colors.green.shade200,
+                      color: const Color.fromRGBO(253, 255, 128, 1),
                       width: 1,
                     ),
                   ),

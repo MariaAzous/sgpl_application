@@ -20,7 +20,7 @@ class Devolvido_003 extends StatelessWidget {
         backgroundColor: Colors.white, // Cor do fundo do AppBar
       ),
       // Corpo da tela com os detalhes da ocorrência
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment:
@@ -98,7 +98,7 @@ class Devolvido_003 extends StatelessWidget {
                     'Não foi possível compartilhar a tela com os alunos.',
                     style: TextStyle(fontSize: 14),
                     softWrap: true,
-                    overflow: TextOverflow.visible,
+                    overflow: TextOverflow.visible, // permite quebra de linha
                   ),
                   SizedBox(height: 20),
                 ],
@@ -107,7 +107,8 @@ class Devolvido_003 extends StatelessWidget {
 
             SizedBox(height: 12), // espaçamento entre o texto e o card
             Container(
-             width: double.infinity, // Faz o container ocupar toda a largura disponível
+              width: double
+                  .infinity, // Faz o container ocupar toda a largura disponível
               decoration: BoxDecoration(
                 color: Colors.grey.shade50, // fundo claro como estava no Card
                 border: Border.all(

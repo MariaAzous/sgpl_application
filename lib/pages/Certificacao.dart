@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:sgpl_application/pages/Historico.dart';
 import 'package:sgpl_application/pages/Devolucoes.dart';
-import 'package:sgpl_application/incidents/Ocorrencia_001.dart';
 
 class Certificacao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SGPLInfoPage(),
-    );
+    return const SGPLInfoPage();
   }
 }
 
@@ -60,7 +56,6 @@ class SGPLInfoPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-
                       MaterialPageRoute(builder: (context) => Devolucoes()),
                     );
                     print('Ocorrência devolvida');
@@ -90,11 +85,8 @@ class SGPLInfoPage extends StatelessWidget {
                 height: 35, // mesma altura
                 child: OutlinedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Ocorrencia_001()),
-                    );
-                    print('Ocorrência não devolvida');
+                    Navigator.pop(context);
+                    print('Usuário não devolveu a ocorrência');
                   },
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: Colors.grey.shade400),
@@ -119,4 +111,3 @@ class SGPLInfoPage extends StatelessWidget {
     );
   }
 }
-
