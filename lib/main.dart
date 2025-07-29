@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/Aviso.dart'; // Importe página Aviso
+import 'pages/Aviso.dart';
+import 'controllers/login_controller.dart';
 
 void main() {
   runApp(SgplApp());
@@ -26,13 +27,20 @@ class _LoginScreenState extends State<LoginScreen> {
   final _rmController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void _tryLogin() {
+  void _tryLogin() async {
     if (_formKey.currentState!.validate()) {
-      // Redireciona para a tela Home
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Aviso())
+      final success = await LoginController.signin(
+        _rmController.text,
+        _passwordController.text,
       );
-      print('Usuario entrou com RM: ${_rmController.text}'
-      );
+      
+      if (success) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Aviso()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Credenciais inválidas')),
+        );
+      }
     }
   }
 

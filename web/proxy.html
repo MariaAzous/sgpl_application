@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        window.addEventListener('message', async (event) => {
+            if (event.data.type === 'PROXY_REQUEST') {
+                try {
+                    const response = await fetch(event.data.url);
+                    const result = await response.text();
+                    event.source.postMessage({
+                        type: 'PROXY_RESPONSE',
+                        success: response.ok,
+                        data: result
+                    }, '*');
+                } catch (error) {
+                    event.source.postMessage({
+                        type: 'PROXY_RESPONSE',
+                        success: false,
+                        error: error.message
+                    }, '*');
+                }
+            }
+        });
+    </script>
+</head>
+<body></body>
+</html>
