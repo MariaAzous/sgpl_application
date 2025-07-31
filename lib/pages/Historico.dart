@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/controllers/historico_controller.dart';
+import 'package:sgpl_application/main.dart';
+import 'package:sgpl_application/pages/Devolucoes.dart';
 
 class Historico extends StatefulWidget {
   @override
@@ -82,21 +84,53 @@ class _HistoricoState extends State<Historico> {
         ),
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(color: Colors.black, width: 1.0),
-          ),
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: Colors.black, width: 1.0)),
         ),
         child: BottomAppBar(
           color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: Icon(Icons.home),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Devolucoes()),
+                    );
+                    print('Devoluções clicado');
+                  },
+                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.assignment_return),
+                      SizedBox(width: 8),
+                      Text('Devoluções'),
+                    ],
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => SgplApp()),
+                      (route) => false,
+                    );
+                    print('Sair clicado');
+                  },
+                  style: TextButton.styleFrom(foregroundColor: Colors.black),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.logout),
+                      SizedBox(width: 8),
+                      Text('Sair'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
