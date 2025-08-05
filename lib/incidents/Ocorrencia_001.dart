@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Historico.dart';
+import 'package:sgpl_application/controllers/ocorrencia_controller.dart';
 
 class Ocorrencia_001 extends StatefulWidget {
   @override
@@ -10,17 +11,72 @@ class Ocorrencia_001 extends StatefulWidget {
 
 class _Ocorrencia_001State extends State<Ocorrencia_001> {
   final TextEditingController _resolucaoController = TextEditingController();
+  Map<String, dynamic>? ocorrenciaData;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadOcorrencia();
+  }
+
+  _loadOcorrencia() async {
+    final data = await OcorrenciaController.findById(1);
+    setState(() {
+      ocorrenciaData = data;
+      isLoading = false;
+    });
+  }
+
+  Widget _buildDetailRow(String label, String value) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 80,
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[600],
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[800],
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   void dispose() {
-    _resolucaoController.dispose(); // evita vazamento de memória
+    _resolucaoController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Scaffold(
+        appBar: AppBar(title: Text('OCORRÊNCIA')),
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return Scaffold(
-      backgroundColor: Colors.white, // Cor do fundo da página
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         automaticallyImplyLeading: false, // Remove a seta de voltar
         title: Text(
@@ -32,202 +88,230 @@ class _Ocorrencia_001State extends State<Ocorrencia_001> {
         ),
         backgroundColor: Colors.white, // Cor do fundo do AppBar
       ),
-      // Corpo da tela com os detalhes da ocorrência
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start, // Alinha o texto à esquerda
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 1), // Espaço entre o AppBar e o primeiro botão
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // aqui também
-              children: [
-                Text(
-                  'Teclado quebrado  #001',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'RM974568',
-                  style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 15), // espaçamento entre o texto e o card
+            // Header da ocorrência
             Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.grey.shade50, // fundo claro como estava no Card
-                border: Border.all(
-                  color: Colors.green.shade200,
-                  width: 1,
-                ), // borda
-                borderRadius: BorderRadius.circular(8), // cantos arredondados
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.1),
                     spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: Offset(0, 3), // sombra para baixo
+                    blurRadius: 10,
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),
-
-              padding: const EdgeInsets.all(16.0), // mesmo padding do Card
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'RM Professor: 987604',
-                    style: TextStyle(fontSize: 18, color: Colors.grey.shade500),
-                  ),
-                  SizedBox(height: 10),
+                children: [
                   Row(
                     children: [
-                      Text('Data: 09/09/2024'),
-                      SizedBox(width: 18),
-                      Text('Período: Noturno'),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: Color(0xFF4CAF50).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          'ATIVO',
+                          style: TextStyle(
+                            color: Color(0xFF4CAF50),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Text('Laboratório: 1'),
-                      SizedBox(width: 18),
-                      Text('Andar: 2'),
-                      SizedBox(width: 18),
-                      Text('Máquina: 009675'),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-
+                  SizedBox(height: 12),
                   Text(
-                    'Descrição do problema:',
-                    style: TextStyle(fontSize: 16, color: Colors.grey.shade500),
+                    ocorrenciaData?['titulo'] ?? 'Carregando...',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey[800],
+                    ),
                   ),
-                  SizedBox(height: 6),
-                  const Text(
-                    'Teclado ao início da aula foi encontrado com as teclas desmontadas e o cabo de conexão rompido.',
-                    style: TextStyle(fontSize: 14),
-                    softWrap: true,
-                    overflow: TextOverflow.visible, // Permite quebra de linha
+                  SizedBox(height: 8),
+                  Text(
+                    ocorrenciaData?['rmAluno'] ?? '',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  SizedBox(height: 20),
                 ],
               ),
             ),
 
-            SizedBox(height: 16), // Espaço entre os cards
+            SizedBox(height: 20),
 
+            // Detalhes da ocorrência
             Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.grey.shade50,
-                border: Border.all(color: Colors.green.shade200, width: 1),
-                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    // ignore: deprecated_member_use
-                    color: Colors.green.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 4,
-                    offset: Offset(0, 3), // sombra para baixo
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 1,
+                    blurRadius: 10,
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),
-
-              child: TextFormField(
-                controller: _resolucaoController,
-                maxLines: 4,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Por favor, preencha a descrição da resolução.';
-                  }
-                  return null;
-                },
-                style: const TextStyle(fontSize: 16),
-                decoration: InputDecoration(
-                  hintText: 'Descrição da resolução:',
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade500,
-                  ),
-
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 16,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Detalhes',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[800],
                     ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
+                  SizedBox(height: 16),
+                  _buildDetailRow('Professor', 'RM ${ocorrenciaData?['rmProfessor'] ?? ''}'),
+                  _buildDetailRow('Data', ocorrenciaData?['data'] ?? ''),
+                  _buildDetailRow('Período', ocorrenciaData?['periodo'] ?? ''),
+                  _buildDetailRow('Laboratório', ocorrenciaData?['laboratorio'] ?? ''),
+                  _buildDetailRow('Andar', ocorrenciaData?['andar'] ?? ''),
+                  _buildDetailRow('Máquina', ocorrenciaData?['maquina'] ?? ''),
+                  SizedBox(height: 16),
+                  Text(
+                    'Descrição do Problema',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[700],
                     ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(
-                      color: Colors.green.shade200,
-                      width: 1,
+                  SizedBox(height: 8),
+                  Text(
+                    ocorrenciaData?['descricao'] ?? '',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                      height: 1.5,
                     ),
                   ),
-                ),
+                ],
               ),
             ),
 
-            // Aqui o botão centralizado
-            SizedBox(height: 40),
-            Center(
-              child: SizedBox(
-                width: 160,
-                height: 35,
-                child: OutlinedButton(
-                  onPressed: () {
-                    // Remove qualquer snackbar anterior antes de exibir um novo
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    // Verifica se o campo está vazio manualmente
-                    if (_resolucaoController.text.trim().isEmpty) {
-                      // Exibe a mesma mensagem do main.dart
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Por favor, preencha a descrição da resolução.',
-                          ),
-                          backgroundColor: Colors.grey.shade500,
-                        ),
-                      );
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Certificacao()),
-                      );
-                      print('Botão de enviar pressionado');
-                    }
-                  },
+            SizedBox(height: 20),
 
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.grey.shade400),
-
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.grey.shade500,
-
-                    textStyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    padding: EdgeInsets.zero,
+            // Campo de resolução
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 1,
+                    blurRadius: 10,
+                    offset: Offset(0, 2),
                   ),
-                  child: const Text('Enviar'),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Resolução',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  TextFormField(
+                    controller: _resolucaoController,
+                    maxLines: 4,
+                    style: TextStyle(fontSize: 16),
+                    decoration: InputDecoration(
+                      hintText: 'Descreva como o problema foi resolvido...',
+                      hintStyle: TextStyle(
+                        color: Colors.grey[400],
+                        fontSize: 14,
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[50],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                          color: Color(0xFF4CAF50),
+                          width: 2,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.all(16),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 30),
+
+            // Botão de enviar
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  if (_resolucaoController.text.trim().isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Por favor, preencha a descrição da resolução.'),
+                        backgroundColor: Colors.red[400],
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Certificacao()),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF4CAF50),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  'Finalizar Ocorrência',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

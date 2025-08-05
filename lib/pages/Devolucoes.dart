@@ -8,6 +8,101 @@ import 'package:sgpl_application/returned_reports/Devolvido_004.dart';
 import 'package:sgpl_application/returned_reports/Devolvido_005.dart';
 
 class Devolucoes extends StatelessWidget {
+  Widget _buildDateSection(String date, List<Widget> items) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 4, bottom: 12),
+          child: Text(
+            date,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey[700],
+            ),
+          ),
+        ),
+        ...items,
+        SizedBox(height: 24),
+      ],
+    );
+  }
+
+  Widget _buildDevolutionItem(String title, String date, VoidCallback onTap) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 8,
+            offset: Offset(0, 2),
+          ),
+        ],
+        border: Border.all(
+          color: Colors.grey.withOpacity(0.2),
+          width: 1,
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: onTap,
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Container(
+                  width: 4,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        date,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: Colors.grey[400],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,184 +115,46 @@ class Devolucoes extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      //Quarta-Feira
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0), // padding igual ao seu código
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Quarta-Feira',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-            ),
-            const SizedBox(height: 13),
-
-            SizedBox(
-              width: 2000, // Largura fixa
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Devolvido_005()),
-                  );
-                  print('Botão 1 pressionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(color: Colors.grey),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '11/09/2024 - Problemas com autenticação',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 12),
-            SizedBox(
-              width: 2000,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Devolvido_004()),
-                  );
-                  print('Botão 2 pressionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(color: Colors.grey),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '11/09/2024 - Erro no VS Code',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            //Terça-Feira
-            const Text(
-              'Terça-Feira',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-            ),
-            const SizedBox(height: 13),
-
-            SizedBox(
-              width: 2000,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Devolvido_003()),
-                  );
-                  print('Botão 3 pressionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(color: Colors.grey),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '10/09/2024 - Falha no compartilhamento de tela',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            //Segunda-Feira
-            const Text(
-              'Segunda-Feira',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-            ),
-            const SizedBox(height: 13),
-
-            SizedBox(
-              width: 2000,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Devolvido_002()),
-                  );
-                  print('Botão 4 pressionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(color: Colors.grey),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '09/09/2024 - Falha na conexão à internet',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            const SizedBox(height: 8),
-            SizedBox(
-              width: 2000,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Devolvido_001()),
-                  );
-                  print('Botão 5 pressionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: const BorderSide(color: Colors.grey),
-                  ),
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '09/09/2024 - Teclado quebrado',
-                    style: const TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ),
+            Expanded(
+              child: ListView(
+                children: [
+                  _buildDateSection('Quarta-feira', [
+                    _buildDevolutionItem(
+                      'Problemas com autenticação',
+                      '11/09/2024',
+                      () => Navigator.push(context, MaterialPageRoute(builder: (context) => Devolvido_005())),
+                    ),
+                    _buildDevolutionItem(
+                      'Erro no VS Code',
+                      '11/09/2024',
+                      () => Navigator.push(context, MaterialPageRoute(builder: (context) => Devolvido_004())),
+                    ),
+                  ]),
+                  _buildDateSection('Terça-feira', [
+                    _buildDevolutionItem(
+                      'Falha no compartilhamento de tela',
+                      '10/09/2024',
+                      () => Navigator.push(context, MaterialPageRoute(builder: (context) => Devolvido_003())),
+                    ),
+                  ]),
+                  _buildDateSection('Segunda-feira', [
+                    _buildDevolutionItem(
+                      'Falha na conexão à internet',
+                      '09/09/2024',
+                      () => Navigator.push(context, MaterialPageRoute(builder: (context) => Devolvido_002())),
+                    ),
+                    _buildDevolutionItem(
+                      'Teclado quebrado',
+                      '09/09/2024',
+                      () => Navigator.push(context, MaterialPageRoute(builder: (context) => Devolvido_001())),
+                    ),
+                  ]),
+                ],
               ),
             ),
           ],

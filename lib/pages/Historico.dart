@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sgpl_application/controllers/historico_controller.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Devolucoes.dart';
+import 'package:sgpl_application/incidents/Ocorrencia_001.dart';
+import 'package:sgpl_application/incidents/Ocorrencia_002.dart';
 
 class Historico extends StatefulWidget {
   @override
@@ -34,7 +36,7 @@ class _HistoricoState extends State<Historico> {
       );
     }
     return Scaffold(
-      backgroundColor: Colors.white, // Cor do fundo da página
+      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false, // Remove a seta de voltar
         title: Text(
@@ -47,39 +49,96 @@ class _HistoricoState extends State<Historico> {
         backgroundColor: Colors.white, // Cor do fundo do AppBar
       ),
 
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...ocorrencias.map((ocorrencia) => Padding(
-              padding: EdgeInsets.only(bottom: 24),
-              child: SizedBox(
-                width: 2000,
-                height: 60,
-                child: ElevatedButton(
-                  onPressed: () => print('Ocorrência: ${ocorrencia['id']}'),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 4,
-                    foregroundColor: Colors.black,
-                    minimumSize: Size(200, 60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    backgroundColor: Color.fromRGBO(130, 235, 113, 1),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${ocorrencia['data'] ?? ''} - ${ocorrencia['descricao'] ?? ''}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+            Expanded(
+              child: ListView.builder(
+                itemCount: ocorrencias.length,
+                itemBuilder: (context, index) {
+                  final ocorrencia = ocorrencias[index];
+                  return Container(
+                    margin: EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.2),
+                        width: 1,
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: () {
+                          if (ocorrencia['id'] == 1) {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Ocorrencia_001()));
+                          } else if (ocorrencia['id'] == 2) {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Ocorrencia_002()));
+                          }
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 4,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF4CAF50),
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      ocorrencia['data'] ?? '',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text(
+                                      ocorrencia['descricao'] ?? '',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey[800],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                                color: Colors.grey[400],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
-            )).toList(),
+            ),
           ],
         ),
       ),
@@ -105,7 +164,7 @@ class _HistoricoState extends State<Historico> {
                   style: TextButton.styleFrom(foregroundColor: Colors.black),
                   child: const Row(
                     children: [
-                      Icon(Icons.assignment_return),
+                      Icon(Icons.computer),
                       SizedBox(width: 8),
                       Text('Devoluções'),
                     ],
