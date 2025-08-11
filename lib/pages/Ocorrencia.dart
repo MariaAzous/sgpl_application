@@ -83,7 +83,7 @@ class _OcorrenciaState extends State<Ocorrencia> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
                         onTap: () {
-                          if (ocorrencia['id'] == 4) {
+                          if (ocorrencia['id'] == 10) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => OcorrenciaId()));
                           } else if (ocorrencia['id'] == 2) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => Ocorrencia_002()));

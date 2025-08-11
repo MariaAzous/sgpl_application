@@ -21,10 +21,9 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
   }
 
   _loadOcorrencia() async {
-    final data = await OcorrenciaController.findById(4);
+    final data = await OcorrenciaController.findById(10);
     setState(() {
       ocorrenciaData = data;
-      print(data);
       isLoading = false;
     });
   }
@@ -184,7 +183,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  _buildDetailRow('Professor', 'RM ${ocorrenciaData?['professor.id'] ?? ''}'),
+                  _buildDetailRow('Professor', 'RM ${ocorrenciaData?['professor.rm'] ?? ''}'),
                   _buildDetailRow('Data', ocorrenciaData?['dataOcorrencia'] ?? ''),
                   _buildDetailRow('Período', ocorrenciaData?['periodo'] ?? ''),
                   _buildDetailRow('Ambiente', ocorrenciaData?['ambiente'] ?? ''),
