@@ -24,6 +24,25 @@ class HistoricoController {
       return _getMockData();
     }
   }
+
+    static Future<List<Map<String, dynamic>>> findByOcorrenciaId(int id) async {
+    try {
+      final response = await http.get(
+        Uri.parse('$_baseUrl/historico/findByOcorrenciaId/$id'),
+        headers: {'Content-Type': 'application/json'},
+      );
+      print('Status: ${response.statusCode}, Body: ${response.body}');
+      
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        return data.cast<Map<String, dynamic>>();
+      }
+      return _getMockData();
+    } catch (e) {
+      print('Erro ao buscar histórico: $e');
+      return _getMockData();
+    }
+  }
   
   static List<Map<String, dynamic>> _getMockData() {
     return [

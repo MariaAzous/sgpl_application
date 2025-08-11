@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sgpl_application/pages/Historico.dart';
+import 'package:sgpl_application/pages/Ocorrencia.dart';
 
 class Aviso extends StatelessWidget {
   @override
@@ -147,7 +147,7 @@ class SGPLInfoPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Historico(),
+                          builder: (context) => Ocorrencia(),
                         ), // Substitua por sua tela
                       );
                       print('Botão de fechar pressionado');
