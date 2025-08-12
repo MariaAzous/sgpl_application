@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/main.dart';
-import 'package:sgpl_application/pages/Historico.dart';
+import 'package:sgpl_application/pages/Ocorrencia.dart';
 import 'package:sgpl_application/returned_reports/Devolvido_001.dart';
 import 'package:sgpl_application/returned_reports/Devolvido_002.dart';
 import 'package:sgpl_application/returned_reports/Devolvido_003.dart';
@@ -177,16 +177,16 @@ class Devolucoes extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Historico()),
+                      MaterialPageRoute(builder: (context) => Ocorrencia()),
                     );
-                    print('Histórico clicado');
+                    print('Ocorrências clicado');
                   },
                   style: TextButton.styleFrom(foregroundColor: Colors.black),
                   child: const Row(
                     children: [
                       Icon(Icons.history),
                       SizedBox(width: 8),
-                      Text('Histórico'),
+                      Text('Ocorrências'),
                     ],
                   ),
                 ),

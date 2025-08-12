@@ -81,8 +81,8 @@ class SGPLInfoPage extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        "Emergência: Não podem esperar",
-                        style: TextStyle(color: Colors.black, fontSize: 13),
+                        "Emergência: PRECISA SER ATENDIDO COM A MÁXIMA PRIORIDADE",
+                        style: TextStyle(color: Colors.black, fontSize: 11),
                       ),
                     ),
                   ),
@@ -106,7 +106,7 @@ class SGPLInfoPage extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        "Urgente: Espera mínima",
+                        "Urgência: PRECISA SER ANTEDIDO O QUANTO ANTES",
                         style: TextStyle(color: Colors.black, fontSize: 13),
                       ),
                     ),
@@ -130,7 +130,7 @@ class SGPLInfoPage extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        "Eletiva: Podem esperar",
+                        "Eletiva: PRECISA SER ATENDIDO",
                         style: TextStyle(color: Colors.black, fontSize: 13),
                       ),
                     ),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
-import 'package:sgpl_application/pages/Historico.dart';
+import 'package:sgpl_application/pages/Ocorrencia.dart';
 import 'package:sgpl_application/controllers/ocorrencia_controller.dart';
 
 class OcorrenciaId extends StatefulWidget {
+  final int ocorrenciaId;
+
+  OcorrenciaId(this.ocorrenciaId); // Construtor que recebe o ID
+
   @override
   _OcorrenciaIdState createState() => _OcorrenciaIdState();
 }
@@ -21,7 +25,8 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
   }
 
   _loadOcorrencia() async {
-    final data = await OcorrenciaController.findById(10);
+    int id = widget.ocorrenciaId;
+    final data = await OcorrenciaController.findById(id);
     setState(() {
       ocorrenciaData = data;
       isLoading = false;
@@ -115,7 +120,10 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: Color(0xFF4CAF50).withOpacity(0.1),
                           borderRadius: BorderRadius.circular(20),
@@ -133,20 +141,13 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                   ),
                   SizedBox(height: 12),
                   Text(
-                    ocorrenciaData?['titulo'] ?? 'Carregando...',
+                    ocorrenciaData?['titulo'] +
+                            ' #_${ocorrenciaData?['id'].toString()}' ??
+                        'Carregando...',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: Colors.grey[800],
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    ocorrenciaData?['id'] ?? '',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
@@ -183,11 +184,19 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  _buildDetailRow('Professor', 'RM ${ocorrenciaData?['professor.rm'] ?? ''}'),
-                  _buildDetailRow('Data', ocorrenciaData?['dataOcorrencia'] ?? ''),
+                  _buildDetailRow(
+                    'Professor',
+                    'RM ${ocorrenciaData?['professor']['rm'] ?? ''}',
+                  ),
+                  _buildDetailRow(
+                    'Data',
+                    ocorrenciaData?['dataOcorrencia'] ?? '',
+                  ),
                   _buildDetailRow('Período', ocorrenciaData?['periodo'] ?? ''),
-                  _buildDetailRow('Ambiente', ocorrenciaData?['ambiente'] ?? ''),
-                  _buildDetailRow('Classificação', ocorrenciaData?['classificacao'] ?? ''),
+                  _buildDetailRow(
+                    'Ambiente',
+                    ocorrenciaData?['ambiente']['nome'] ?? '',
+                  ),
                   SizedBox(height: 16),
                   Text(
                     'Descrição do Problema',
@@ -232,7 +241,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Resolução',
+                    'Descrição da Resolução',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -245,7 +254,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                     maxLines: 4,
                     style: TextStyle(fontSize: 16),
                     decoration: InputDecoration(
-                      hintText: 'Descreva como o problema foi resolvido...',
+                      hintText: 'Descreva como o problema foi resolvido.',
                       hintStyle: TextStyle(
                         color: Colors.grey[400],
                         fontSize: 14,
@@ -277,12 +286,17 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   ScaffoldMessenger.of(context).clearSnackBars();
-                  if (_resolucaoController.text.trim().isEmpty) {
+
+                  final resolucao = _resolucaoController.text.trim();
+
+                  if (resolucao.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Por favor, preencha a descrição da resolução.'),
+                        content: Text(
+                          'Por favor, preencha a descrição da resolução.',
+                        ),
                         backgroundColor: Colors.red[400],
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
@@ -291,6 +305,19 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                       ),
                     );
                   } else {
+                    await OcorrenciaController.resolverOcorrencia(widget.ocorrenciaId, resolucao);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Ocorrência resolvida com sucesso!'),
+                        backgroundColor: Colors.green[400],
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    );
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Certificacao()),
@@ -307,10 +334,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                 ),
                 child: Text(
                   'Finalizar Ocorrência',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -343,9 +367,9 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                     ).clearSnackBars(); // <- limpa o SnackBar
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Historico()),
+                      MaterialPageRoute(builder: (context) => Ocorrencia()),
                     );
-                    print('Histórico clicado');
+                    print('Ocorrências clicado');
                   },
                   style: TextButton.styleFrom(
                     foregroundColor:
@@ -356,7 +380,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                     children: [
                       Icon(Icons.history),
                       SizedBox(width: 8),
-                      Text('Historico'),
+                      Text('Ocorrências'),
                     ],
                   ),
                 ),

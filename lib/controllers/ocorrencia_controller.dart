@@ -10,17 +10,41 @@ class OcorrenciaController {
         Uri.parse('$_baseUrl/ocorrencia/findById/$id'),
         headers: {'Content-Type': 'application/json'},
       );
-      print('Status: ${response.statusCode}, Body: ${response.body}');
+
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
+      } else {
+        return null;
       }
-      print(response.body);
-      return _getMockData(id);
     } catch (e) {
-      return _getMockData(id);
+      return _getMockData(1);
     }
   }
-  
+
+  static Future<void> resolverOcorrencia(int id, String resolucao) async {
+    final url = Uri.parse('$_baseUrl/ocorrencia/resolver/$id');
+
+    final body = {
+      "resolucao": resolucao,
+      // Adicione outros campos se necessário, como "descricao", "status", etc.
+    };
+    try {
+      final response = await http.put(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(body),
+      );
+
+      if (response.statusCode == 200) {
+        print('Ocorrência resolvida com sucesso.');
+      } else {
+        print('Erro ao resolver ocorrência: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Exceção ao resolver ocorrência: $e');
+    }
+  }
+
   static Future<List<Map<String, dynamic>>> findAll() async {
     try {
       final response = await http.get(
@@ -28,7 +52,7 @@ class OcorrenciaController {
         headers: {'Content-Type': 'application/json'},
       );
       print('Status: ${response.statusCode}, Body: ${response.body}');
-      
+
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
         return data.cast<Map<String, dynamic>>();
@@ -43,19 +67,13 @@ class OcorrenciaController {
   static Map<String, dynamic>? _getMockData(int id) {
     final mockData = {
       1: {
-        'id': 1,
-        'titulo': 'Teclado quebrado  #001',
-        'rmAluno': 'RM974568',
-        'rmProfessor': '987604',
-        'data': '09/09/2024',
-        'periodo': 'Noturno',
-        'laboratorio': '1',
-        'andar': '2',
-        'maquina': '009675',
-        'descricao': 'Teclado ao início da aula foi encontrado com as teclas desmontadas e o cabo de conexão rompido.'
-      }
+        'id': id,
+        'titulo': 'Ocorrência Mock',
+        'descricao': 'Esta é uma ocorrência simulada.',
+        'status': 'pendente',
+      },
     };
-    
+
     return mockData[id];
   }
 }

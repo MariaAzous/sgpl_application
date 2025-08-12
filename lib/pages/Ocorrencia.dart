@@ -28,6 +28,22 @@ class _OcorrenciaState extends State<Ocorrencia> {
       isLoading = false;
     });
   }
+
+  Color getClassificacaoColor(String classificacao) {
+    switch (classificacao) {
+      case 'ELETIVA':
+        return Color(0xFF4CAF50); // Verde
+      case 'URGENTE':
+        return Color(0xFFFFC107); // Amarelo
+      case 'EMERGENCIA':
+        return Color(0xFFF44336); // Vermelho
+      default:
+        return Colors.grey; // Cor padrão
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -83,11 +99,8 @@ class _OcorrenciaState extends State<Ocorrencia> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
                         onTap: () {
-                          if (ocorrencia['id'] == 10) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => OcorrenciaId()));
-                          } else if (ocorrencia['id'] == 2) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Ocorrencia_002()));
-                          }
+                          int ocorrenciaId = ocorrencia['id'];
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => OcorrenciaId(ocorrenciaId)));
                         },
                         child: Padding(
                           padding: EdgeInsets.all(16),
@@ -97,7 +110,7 @@ class _OcorrenciaState extends State<Ocorrencia> {
                                 width: 4,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF4CAF50),
+                                  color: getClassificacaoColor(ocorrencia['classificacao']),
                                   borderRadius: BorderRadius.circular(2),
                                 ),
                               ),
