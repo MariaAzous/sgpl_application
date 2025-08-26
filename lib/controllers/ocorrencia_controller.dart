@@ -48,7 +48,7 @@ class OcorrenciaController {
   static Future<List<Map<String, dynamic>>> findAll() async {
     try {
       final response = await http.get(
-        Uri.parse('$_baseUrl/ocorrencia/findAllAtivo'),
+        Uri.parse('$_baseUrl/ocorrencia/findAllAberta'),
         headers: {'Content-Type': 'application/json'},
       );
       print('Status: ${response.statusCode}, Body: ${response.body}');

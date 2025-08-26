@@ -3,6 +3,9 @@ import 'package:sgpl_application/controllers/ocorrencia_controller.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Devolucoes.dart';
 import 'package:sgpl_application/pages/OcorrenciaId.dart';
+import 'package:sgpl_application/pages/Ocorrencia.dart';
+import 'package:sgpl_application/pages/OcorrenciaResolvida.dart';
+
 
 class Devolucao extends StatefulWidget {
   @override
@@ -98,7 +101,7 @@ class _DevolucaoState extends State<Devolucao> {
                         borderRadius: BorderRadius.circular(12),
                         onTap: () {
                           int ocorrenciaId = ocorrencia['id'];
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => OcorrenciaId(ocorrenciaId)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => OcorrenciaResolvida(ocorrenciaId)));
                         },
                         child: Padding(
                           padding: EdgeInsets.all(16),
@@ -169,16 +172,16 @@ class _DevolucaoState extends State<Devolucao> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Devolucoes()),
+                      MaterialPageRoute(builder: (context) => Ocorrencia()),
                     );
-                    print('Devoluções clicado');
+                    print('Ocorrências Devoluções clicado');
                   },
                   style: TextButton.styleFrom(foregroundColor: Colors.black),
                   child: const Row(
                     children: [
                       Icon(Icons.computer),
                       SizedBox(width: 8),
-                      Text('Devoluções'),
+                      Text('Ocorrências'),
                     ],
                   ),
                 ),

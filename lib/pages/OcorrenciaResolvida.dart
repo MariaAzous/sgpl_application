@@ -135,16 +135,16 @@ class _OcorrenciaResolvidaState extends State<OcorrenciaResolvida> {
                     ],
                   ),
                   SizedBox(height: 12),
-                  Text(
-                    ocorrenciaData?['titulo'] +
-                            ' #${ocorrenciaData?['id'].toString()}' ??
-                        'Carregando...',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.grey[800],
-                    ),
-                  ),
+                 Text(
+  ocorrenciaData != null
+      ? '${ocorrenciaData!['titulo']} #${ocorrenciaData!['id']}'
+      : 'Carregando...',
+  style: TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: Colors.grey[800],
+  ),
+),
                 ],
               ),
             ),
@@ -216,28 +216,28 @@ class _OcorrenciaResolvidaState extends State<OcorrenciaResolvida> {
                   ),
                 ],
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+          child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
                   Text(
                     'Descrição da Resolução',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Colors.grey[800],
+                      color: Colors.grey[700],
                     ),
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: 8),
                   Text(
-                    ocorrenciaData?['resolucao'] ?? 'Não resolvido.',
+                    ocorrenciaData?['resolucao'] ?? '',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey[700],
+                      color: Colors.grey[600],
                       height: 1.5,
                     ),
                   ),
-                ],
-              ),
+    ],
+            ),
             ),
           ],
         ),

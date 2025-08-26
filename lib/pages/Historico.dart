@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/controllers/historico_controller.dart';
 import 'package:sgpl_application/main.dart';
-import 'package:sgpl_application/pages/Devolucoes.dart';
+import 'package:sgpl_application/pages/Devolucao.dart';
 
 class Historico extends StatefulWidget {
   @override
@@ -151,7 +151,7 @@ class _HistoricoState extends State<Historico> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Devolucoes()),
+                      MaterialPageRoute(builder: (context) => Devolucao()),
                     );
                     print('Devoluções clicado');
                   },

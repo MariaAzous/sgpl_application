@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sgpl_application/pages/Devolucoes.dart';
+import 'package:sgpl_application/pages/Devolucao.dart';
 
 class CertificacaoPopup extends StatelessWidget {
   final VoidCallback onConfirm;
@@ -46,7 +46,7 @@ class CertificacaoPopup extends StatelessWidget {
                   onConfirm();
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Devolucoes()),
+                  MaterialPageRoute(builder: (context) => Devolucao()),
                 );
                   print('Ocorrência devolvida');
                 },
