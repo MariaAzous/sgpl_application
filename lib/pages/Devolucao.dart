@@ -1,35 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:sgpl_application/controllers/historico_controller.dart';
+import 'package:sgpl_application/controllers/ocorrencia_controller.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Devolucoes.dart';
+import 'package:sgpl_application/pages/OcorrenciaId.dart';
 
-class Historico extends StatefulWidget {
+class Devolucao extends StatefulWidget {
   @override
-  _HistoricoState createState() => _HistoricoState();
+  _DevolucaoState createState() => _DevolucaoState();
 }
 
-class _HistoricoState extends State<Historico> {
-  List<Map<String, dynamic>> ocorrencias = [];
+class _DevolucaoState extends State<Devolucao> {
+  List<Map<String, dynamic>> devolucoes = [];
   bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _loadHistorico();
+    _loadOcorrencia();
   }
 
-  _loadHistorico() async {
-    final data = await HistoricoController.findAll();
+  _loadOcorrencia() async {
+    final data = await OcorrenciaController.findAllConcluida();
     setState(() {
-      ocorrencias = data;
+      devolucoes = data;
       isLoading = false;
     });
   }
+
+  Color getClassificacaoColor(String classificacao) {
+    switch (classificacao) {
+      case 'ELETIVA':
+        return Color(0xFF4CAF50); // Verde
+      case 'URGENTE':
+        return Color(0xFFFFC107); // Amarelo
+      case 'EMERGÊNCIA':
+        return Color(0xFFF44336); // Vermelho
+      default:
+        return Colors.grey; // Cor padrão
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
       return Scaffold(
-        appBar: AppBar(title: Text('HISTÓRICO')),
+        appBar: AppBar(title: Text('Devoluções')),
         body: Center(child: CircularProgressIndicator()),
       );
     }
@@ -38,7 +55,7 @@ class _HistoricoState extends State<Historico> {
       appBar: AppBar(
         automaticallyImplyLeading: false, // Remove a seta de voltar
         title: Text(
-          'HISTÓRICO',
+          'Devoluções',
           style: TextStyle(
             fontWeight: FontWeight.bold, // NEGRITO!
             fontSize: 29.0, // Tamanho da fonte
@@ -54,9 +71,9 @@ class _HistoricoState extends State<Historico> {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: ocorrencias.length,
+                itemCount: devolucoes.length,
                 itemBuilder: (context, index) {
-                  final ocorrencia = ocorrencias[index];
+                  final ocorrencia = devolucoes[index];
                   return Container(
                     margin: EdgeInsets.only(bottom: 16),
                     decoration: BoxDecoration(
@@ -80,7 +97,8 @@ class _HistoricoState extends State<Historico> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
                         onTap: () {
-                        
+                          int ocorrenciaId = ocorrencia['id'];
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => OcorrenciaId(ocorrenciaId)));
                         },
                         child: Padding(
                           padding: EdgeInsets.all(16),
@@ -90,7 +108,7 @@ class _HistoricoState extends State<Historico> {
                                 width: 4,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF4CAF50),
+                                  color: getClassificacaoColor(ocorrencia['classificacao']),
                                   borderRadius: BorderRadius.circular(2),
                                 ),
                               ),
@@ -100,7 +118,7 @@ class _HistoricoState extends State<Historico> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      ocorrencia['data'] ?? '',
+                                      ocorrencia['dataOcorrencia'] ?? '',
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,

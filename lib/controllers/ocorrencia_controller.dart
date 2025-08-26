@@ -48,7 +48,26 @@ class OcorrenciaController {
   static Future<List<Map<String, dynamic>>> findAll() async {
     try {
       final response = await http.get(
-        Uri.parse('$_baseUrl/ocorrencia/findAll'),
+        Uri.parse('$_baseUrl/ocorrencia/findAllAtivo'),
+        headers: {'Content-Type': 'application/json'},
+      );
+      print('Status: ${response.statusCode}, Body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        return data.cast<Map<String, dynamic>>();
+      }
+      return [];
+    } catch (e) {
+      print('Erro ao buscar histórico: $e');
+      return [];
+    }
+  }
+
+    static Future<List<Map<String, dynamic>>> findAllConcluida() async {
+    try {
+      final response = await http.get(
+        Uri.parse('$_baseUrl/ocorrencia/findAllConcluida'),
         headers: {'Content-Type': 'application/json'},
       );
       print('Status: ${response.statusCode}, Body: ${response.body}');

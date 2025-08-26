@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sgpl_application/controllers/ocorrencia_controller.dart';
 import 'package:sgpl_application/main.dart';
-import 'package:sgpl_application/pages/Devolucoes.dart';
-import 'package:sgpl_application/incidents/Ocorrencia_001.dart';
-import 'package:sgpl_application/incidents/Ocorrencia_002.dart';
+import 'package:sgpl_application/pages/Devolucao.dart';
 import 'package:sgpl_application/pages/OcorrenciaId.dart';
 
 class Ocorrencia extends StatefulWidget {
@@ -35,7 +33,7 @@ class _OcorrenciaState extends State<Ocorrencia> {
         return Color(0xFF4CAF50); // Verde
       case 'URGENTE':
         return Color(0xFFFFC107); // Amarelo
-      case 'EMERGENCIA':
+      case 'EMERGÊNCIA':
         return Color(0xFFF44336); // Vermelho
       default:
         return Colors.grey; // Cor padrão
@@ -171,7 +169,7 @@ class _OcorrenciaState extends State<Ocorrencia> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Devolucoes()),
+                      MaterialPageRoute(builder: (context) => Devolucao()),
                     );
                     print('Devoluções clicado');
                   },

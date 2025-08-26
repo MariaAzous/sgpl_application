@@ -90,12 +90,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                       return null;
                     },
+                    // Quando pressionar Enter, tenta o login
+                    onFieldSubmitted: (_) => _tryLogin(),
                   ),
 
                   const SizedBox(height: 20),
                   SizedBox(
-                    width: 120, // mesma largura do botão "Sim"
-                    height: 35, // mesma altura
+                    width: 120,
+                    height: 35, 
                     child: OutlinedButton(
                       onPressed: _tryLogin,
                       style: OutlinedButton.styleFrom(

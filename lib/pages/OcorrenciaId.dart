@@ -3,6 +3,7 @@ import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Ocorrencia.dart';
 import 'package:sgpl_application/controllers/ocorrencia_controller.dart';
+import 'package:sgpl_application/pages/Devolucoes.dart';
 
 class OcorrenciaId extends StatefulWidget {
   final int ocorrenciaId;
@@ -31,6 +32,19 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
       ocorrenciaData = data;
       isLoading = false;
     });
+  }
+
+  Color getClassificacaoColor(String classificacao) {
+    switch (classificacao) {
+      case 'ELETIVA':
+        return Color(0xFF4CAF50); // Verde
+      case 'URGENTE':
+        return Color(0xFFFFC107); // Amarelo
+      case 'EMERGENCIA':
+        return Color(0xFFF44336); // Vermelho
+      default:
+        return Colors.grey; // Cor padrão
+    }
   }
 
   Widget _buildDetailRow(String label, String value) {
@@ -93,7 +107,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
         ),
         backgroundColor: Colors.white, // Cor do fundo do AppBar
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,13 +139,13 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Color(0xFF4CAF50).withOpacity(0.1),
+                          color: getClassificacaoColor(ocorrenciaData?['classificacao']).withOpacity(0.1),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           'ATIVO',
                           style: TextStyle(
-                            color: Color(0xFF4CAF50),
+                            color: getClassificacaoColor(ocorrenciaData?['classificacao']),
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -142,7 +156,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
                   SizedBox(height: 12),
                   Text(
                     ocorrenciaData?['titulo'] +
-                            ' #_${ocorrenciaData?['id'].toString()}' ??
+                            ' #${ocorrenciaData?['id'].toString()}' ??
                         'Carregando...',
                     style: TextStyle(
                       fontSize: 20,
@@ -287,43 +301,104 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () async {
-                  ScaffoldMessenger.of(context).clearSnackBars();
+  ScaffoldMessenger.of(context).clearSnackBars();
+  final resolucao = _resolucaoController.text.trim();
 
-                  final resolucao = _resolucaoController.text.trim();
+  if (resolucao.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Por favor, preencha a descrição da resolução.'),
+        backgroundColor: Colors.red[400],
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+    return;
+  }
 
-                  if (resolucao.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Por favor, preencha a descrição da resolução.',
-                        ),
-                        backgroundColor: Colors.red[400],
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    );
-                  } else {
-                    await OcorrenciaController.resolverOcorrencia(widget.ocorrenciaId, resolucao);
+  // Exibe o popup de confirmação
+  final bool? confirmacao = await showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/logo_sgpl.png',
+              height: 60,
+            ),
+          ],
+        ),
+        content: Text(
+          'Deseja devolver a ocorrência?',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, true); // Confirma
+            },
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.white,
+              side: BorderSide(color: Colors.grey.shade400),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              minimumSize: Size(100, 35),
+            ),
+            child: Text('Sim', style: TextStyle(color: Colors.black)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, false); // Cancela
+            },
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.white,
+              side: BorderSide(color: Colors.grey.shade400),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              minimumSize: Size(100, 35),
+            ),
+            child: Text('Não', style: TextStyle(color: Colors.black)),
+          ),
+        ],
+      );
+    },
+  );
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Ocorrência resolvida com sucesso!'),
-                        backgroundColor: Colors.green[400],
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    );
+  // Se o usuário confirmou
+  if (confirmacao == true) {
+    await OcorrenciaController.resolverOcorrencia(
+        widget.ocorrenciaId, resolucao);
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Certificacao()),
-                    );
-                  }
-                },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Ocorrência resolvida com sucesso!'),
+        backgroundColor: Colors.green[400],
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+
+    // Volta para tela de Ocorrências (ou navega para onde quiser)
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Devolucoes()),
+    );
+  }
+},
+
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF4CAF50),
                   foregroundColor: Colors.white,

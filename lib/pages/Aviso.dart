@@ -65,7 +65,7 @@ class SGPLInfoPage extends StatelessWidget {
                   // Botões de cor
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(254, 102, 102, 1),
                       borderRadius: BorderRadius.circular(6),
@@ -82,14 +82,14 @@ class SGPLInfoPage extends StatelessWidget {
                     child: const Center(
                       child: Text(
                         "Emergência: PRECISA SER ATENDIDO COM A MÁXIMA PRIORIDADE",
-                        style: TextStyle(color: Colors.black, fontSize: 11),
+                        style: TextStyle(color: Colors.black, fontSize: 13),
                       ),
                     ),
                   ),
                   const SizedBox(height: 9),
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(253, 255, 128, 1),
                       borderRadius: BorderRadius.circular(6),
@@ -111,10 +111,10 @@ class SGPLInfoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 9),
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(130, 235, 113, 1),
                       borderRadius: BorderRadius.circular(6),
@@ -148,7 +148,7 @@ class SGPLInfoPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => Ocorrencia(),
-                        ), // Substitua por sua tela
+                        ), 
                       );
                       print('Botão de fechar pressionado');
                    },
