@@ -43,11 +43,12 @@ class CertificacaoPopup extends StatelessWidget {
               height: 35,
               child: OutlinedButton(
                 onPressed: () {
-                  onConfirm();
+                  Navigator.of(context).pop();
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Devolucao()),
-                );
+                    context,
+                    MaterialPageRoute(builder: (context) => Devolucao()),
+                  );
+                  onConfirm();
                   print('Ocorrência devolvida');
                 },
                 style: OutlinedButton.styleFrom(

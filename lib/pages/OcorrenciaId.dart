@@ -3,7 +3,7 @@ import 'package:sgpl_application/pages/Certificacao.dart';
 import 'package:sgpl_application/main.dart';
 import 'package:sgpl_application/pages/Ocorrencia.dart';
 import 'package:sgpl_application/controllers/ocorrencia_controller.dart';
-import 'package:sgpl_application/pages/Devolucoes.dart';
+import 'package:sgpl_application/pages/Devolucao.dart';
 
 class OcorrenciaId extends StatefulWidget {
   final int ocorrenciaId;
@@ -394,7 +394,7 @@ class _OcorrenciaIdState extends State<OcorrenciaId> {
     // Volta para tela de Ocorrências (ou navega para onde quiser)
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Devolucoes()),
+      MaterialPageRoute(builder: (context) => Devolucao()),
     );
   }
 },
